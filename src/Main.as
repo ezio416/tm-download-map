@@ -30,7 +30,7 @@ void Main() {
 
 void RenderMenu() {
     if (UI::BeginMenu(title, mapName != "")) {
-        if (UI::MenuItem(Icons::Download + " Download \"" + ColoredString(mapName) + "\""))
+        if (UI::MenuItem(Icons::Download + " Download \"" + ColoredString(mapName) + "\\$G\""))
             CopyMapToDownloaded();
 
         if (UI::MenuItem(Icons::ExternalLink + " Open \"Downloaded\" Folder"))
