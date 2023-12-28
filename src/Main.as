@@ -1,6 +1,6 @@
 /*
 c 2023-12-03
-m 2023-12-03
+m 2023-12-09
 */
 
 string cachePath;
@@ -10,6 +10,8 @@ string title = "\\$F5F" + Icons::Download + "\\$G Download Map";
 
 void Main() {
     CTrackMania@ App = cast<CTrackMania@>(GetApp());
+
+    // ReadChecksum();
 
     while (true) {
         cachePath = "";
@@ -68,4 +70,18 @@ void CopyMapToDownloaded() {
     newFile.Open(IO::FileMode::Write);
     newFile.Write(buf);
     newFile.Close();
+}
+
+void ReadChecksum() {
+    string path = "C:/ProgramData/Trackmania/checksum.txt";
+    IO::File file(path);
+    file.Open(IO::FileMode::Read);
+    string xml = file.ReadToEnd();
+    file.Close();
+
+    print(xml);
+
+    XML::Document doc(xml);
+    XML::Node node = doc.Root();
+    print(node.Content());
 }
