@@ -4,7 +4,7 @@ string mapName;
 string title = "\\$F5F" + Icons::Download + "\\$G Download Map";
 
 void Main() {
-    CTrackMania@ App = cast<CTrackMania@>(GetApp());
+    auto App = cast<CTrackMania>(GetApp());
 
     while (true) {
         cachePath = "";
@@ -25,11 +25,13 @@ void Main() {
 
 void RenderMenu() {
     if (UI::BeginMenu(title, mapName != "")) {
-        if (UI::MenuItem(Icons::Download + " Download \"" + ColoredString(mapName) + "\\$G\""))
+        if (UI::MenuItem(Icons::Download + " Download \"" + ColoredString(mapName) + "\\$G\"")) {
             CopyMapToDownloaded();
+        }
 
-        if (UI::MenuItem(Icons::ExternalLink + " Open \"Downloaded\" Folder"))
+        if (UI::MenuItem(Icons::ExternalLink + " Open \"Downloaded\" Folder")) {
             OpenExplorerPath(downloadedFolder);
+        }
 
         UI::EndMenu();
     }
@@ -50,8 +52,9 @@ void CopyMapToDownloaded() {
     while (true) {
         newPath = newName + ".Map.Gbx";
 
-        if (!IO::FileExists(newPath))
+        if (!IO::FileExists(newPath)) {
             break;
+        }
 
         trace("file exists: " + newPath);
         newName = newName.Replace(" (" + (i - 1) + ")", "") + " (" + i++ + ")";
