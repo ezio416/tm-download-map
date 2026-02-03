@@ -1,6 +1,3 @@
-// c 2023-12-03
-// m 2023-12-03
-
 string cachePath;
 string downloadedFolder = IO::FromUserGameFolder("Maps/Downloaded").Replace("\\", "/");
 string mapName;
