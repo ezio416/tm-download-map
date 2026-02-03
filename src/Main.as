@@ -25,7 +25,7 @@ void Main() {
 
 void RenderMenu() {
     if (UI::BeginMenu(title, mapName != "")) {
-        if (UI::MenuItem(Icons::Download + " Download \"" + ColoredString(mapName) + "\\$G\"")) {
+        if (UI::MenuItem(Icons::Download + " Download \"" + Text::OpenplanetFormatCodes(mapName) + "\\$G\"")) {
             CopyMapToDownloaded();
         }
 
@@ -45,7 +45,7 @@ void CopyMapToDownloaded() {
     MemoryBuffer@ buf = oldFile.Read(oldFile.Size());
     oldFile.Close();
 
-    string newName = downloadedFolder + "/" + StripFormatCodes(mapName);
+    string newName = downloadedFolder + "/" + Text::StripFormatCodes(mapName);
     string newPath;
 
     uint i = 1;
