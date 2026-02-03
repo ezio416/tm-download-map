@@ -40,11 +40,6 @@ void RenderMenu() {
 void CopyMapToDownloaded() {
     trace("reading cached map file at " + cachePath);
 
-    IO::File oldFile(cachePath);
-    oldFile.Open(IO::FileMode::Read);
-    MemoryBuffer@ buf = oldFile.Read(oldFile.Size());
-    oldFile.Close();
-
     string newName = downloadedFolder + "/" + Text::StripFormatCodes(mapName);
     string newPath;
 
@@ -62,8 +57,5 @@ void CopyMapToDownloaded() {
 
     trace("saving new map file to " + newPath);
 
-    IO::File newFile(newPath);
-    newFile.Open(IO::FileMode::Write);
-    newFile.Write(buf);
-    newFile.Close();
+    IO::Copy(cachePath, newPath);
 }
